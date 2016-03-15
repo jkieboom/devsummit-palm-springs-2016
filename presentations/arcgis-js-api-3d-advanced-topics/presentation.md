@@ -650,7 +650,7 @@ interface RenderContext {
 ## Show case: Building a custom 3D application
 
 <br><br><br><br>
-**Demo time!**
+**[Demo time!](../../demos/apps/external-renderer)**
 
 ---
 
