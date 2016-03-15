@@ -1,6 +1,6 @@
 <!-- .slide: data-background="images/title.png" -->
 
-<div style="margin-top: 300px"/>
+<div style="padding-top: 300px"/>
 
 # Web 3D with the ArcGIS API for JavaScript
 ## _Advanced topics_
