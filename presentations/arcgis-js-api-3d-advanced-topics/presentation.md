@@ -16,6 +16,14 @@ Yann Cabon, ESRI Redlands
 ---
 
 <!-- .slide: data-background="images/bg-4.png" -->
+## IMPORTANT NOTICE:
+<br><br>
+**All demonstrations and embedded samples are written against<br>
+the upcoming 4.0 release and (most) will not work against 4.0beta3!!!**
+
+---
+
+<!-- .slide: data-background="images/bg-4.png" -->
 
 ## Table of contents
 
@@ -374,7 +382,6 @@ view.goTo({
   scale: 5000,
   heading: 30,
   tilt: 60
-
 });
 </code></pre>
   <svg data-play-frame="frame-goto-graphics" class="play-code" viewBox="0 0 24 24"><path fill="#999" d="M12,20.14C7.59,20.14 4,16.55 4,12.14C4,7.73 7.59,4.14 12,4.14C16.41,4.14 20,7.73 20,12.14C20,16.55 16.41,20.14 12,20.14M12,2.14A10,10 0 0,0 2,12.14A10,10 0 0,0 12,22.14A10,10 0 0,0 22,12.14C22,6.61 17.5,2.14 12,2.14M10,16.64L16,12.14L10,7.64V16.64Z" /></svg>
