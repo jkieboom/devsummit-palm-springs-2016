@@ -1,0 +1,75 @@
+<script>
+var line;
+
+function snippet() {
+  view = new SceneView({
+    container: "viewDiv",
+
+    map: new Map({
+      basemap: "satellite"
+    }),
+
+    center: [0, 0]
+  });
+}
+
+var playing;
+
+function play() {
+  if (playing) {
+    playing.remove();
+    playing = null;
+    return;
+  }
+
+  view.graphics.clear();
+
+  var scale = view.scale;
+  var center = view.center.clone();
+
+  var path = [];
+  var N = 400;
+
+  for (var i = 0; i < N; i++) {
+    var f = i / N;
+
+    p = [f * 360 - 180, center.latitude];
+    path.push(p);
+  }
+
+  line = new Polyline({
+    paths: [path]
+  });
+
+  var graphic = new Graphic({
+    geometry: line,
+    symbol: new LineSymbol3D(new LineSymbol3DLayer({
+      material: {
+        color: "red"
+      },
+
+      size: 10
+    }))
+  });
+
+  view.graphics.add(graphic);
+  
+  playing = Scheduler.addFrameTask({
+    update: function(ev) {
+      var pt = new Point({
+        x: center.longitude + ev.spendInTask / 1000 * 20,
+        y: center.latitude
+      });
+
+      view.goTo({
+        target: pt,
+        scale: scale
+      });
+    }
+  });
+}
+
+modules = ["esri/geometry/Polyline", "esri/Graphic", "esri/symbols/LineSymbol3D", "esri/symbols/LineSymbol3DLayer", "esri/core/Scheduler", "esri/geometry/Point"];
+</script>
+
+<script src="./support/snippet.js"></script>

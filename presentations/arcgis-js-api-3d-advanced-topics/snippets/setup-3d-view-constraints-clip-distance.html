@@ -1,0 +1,85 @@
+<script>
+function snippet() {
+  view = new SceneView({
+    container: "viewDiv",
+
+    map: new Map({
+      basemap: "satellite"
+    }),
+
+    constraints: {
+      altitude: {
+        min: 1000000,
+        max: 50000000
+      }
+    },
+
+    camera: {
+      position: {
+        x: 18.872,
+        y: 16.05,
+        z: 24278278.59
+      },
+      heading: 0,
+      tilt: 0.1
+    }
+  });
+
+  var z = 5000000;
+
+  var start = new Point({
+    x: 10,
+    y: 10
+  });
+
+  var end = new Point({
+    x: 80,
+    y: 30
+  });
+
+  var path = [];
+
+  for (var i = 0; i <= 100; i++) {
+    var f = i / 100;
+
+    path.push([start.x + f * (end.x - start.x), start.y + f * (end.y - start.y), z]);
+  }
+
+  var line = new Polyline({
+    paths: [path]
+  });
+
+  view.then(function() {
+    view.graphics.add(new Graphic({
+      geometry: line,
+
+      symbol: new LineSymbol3D(new PathSymbol3DLayer({
+        size: 500000,
+
+        material: {
+          color: "red"
+        }
+      }))
+    }));
+  });
+
+  view.watch(["constraints.clipDistance.near", "constraints.clipDistance.far"], function() {
+    window.log("clipDistance near:", Math.round(view.constraints.clipDistance.near), ", far:", Math.round(view.constraints.clipDistance.far));
+  });
+}
+
+function play() {
+  view.constraints.clipDistance = {
+    near: 55000,
+    far: 550000000
+  };
+}
+
+modules = ["esri/Graphic", "esri/geometry/Point", "esri/geometry/Polyline", "esri/symbols/LineSymbol3D", "esri/symbols/PathSymbol3DLayer"];
+
+settings = {
+  disableOverviewMap: true
+};
+</script>
+
+<script src="./support/snippet.js"></script>

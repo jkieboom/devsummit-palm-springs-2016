@@ -1,0 +1,39 @@
+<script>
+function snippet() {
+  view = new SceneView({
+    container: "viewDiv",
+
+    map: new Map({
+      basemap: "hybrid"
+    }),
+
+    camera: {
+      position: {
+        x: 8.062,
+        y: 46.042,
+        z: 14813.5
+      },
+      heading: 0,
+      tilt: 80
+    }
+  });
+
+  view.watch("camera", function(camera) {
+    window.log("Heading:", Math.round(camera.heading));
+  });
+}
+
+function play() {
+  var h = view.camera.heading;
+
+  var m = 30;
+  var heading = Math.floor((h + 1e-3) / 30) * 30 + 30;
+
+  view.goTo({
+    position: view.camera.position,
+    heading: heading
+  });
+}
+</script>
+
+<script src="./support/snippet.js"></script>

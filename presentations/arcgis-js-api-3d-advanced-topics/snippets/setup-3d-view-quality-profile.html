@@ -1,0 +1,55 @@
+<script>
+function snippet() {
+  var map = new Map({
+    basemap: "hybrid",
+    layers: [
+      new SceneLayer("http://scene.arcgis.com/arcgis/rest/services/Hosted/Buildings_San_Francisco/SceneServer/layers/0")
+    ]
+  });
+
+  document.body.appendChild(create("div", {
+    id: "viewDivHigh"
+  }));
+
+  viewHigh = new SceneView({
+    map: map,
+    container: "viewDivHigh",
+    qualityProfile: "high"
+  });
+
+  document.body.appendChild(create("div", {
+    id: "viewDivLow"
+  }));
+
+  viewLow = new SceneView({
+    map: map,
+    container: "viewDivLow",
+    qualityProfile: "low"
+  });
+
+  all([viewHigh, viewLow]).then(function() {
+    viewHigh.watch("camera", function(camera) {
+      if (viewHigh.interacting || viewHigh.animation) {
+        viewLow.camera = camera;
+      }
+    });
+
+    viewLow.watch("camera", function(camera) {
+      if (viewLow.interacting || viewLow.animation) {
+        viewHigh.camera = camera;
+      }
+    });
+  });
+}
+
+settings = {
+  disableOverviewMap: true,
+  disableLog: true,
+  disableViewDiv: true
+};
+
+modules = ["esri/layers/SceneLayer", "dojo/promise/all"];
+
+</script>
+
+<script src="./support/snippet.js"></script>

@@ -1,0 +1,35 @@
+<script>
+function snippet() {
+  view = new SceneView({
+    container: "viewDiv",
+
+    map: new Map({
+      basemap: "hybrid"
+    }),
+
+    camera: {
+      position: {
+        x: 8.062,
+        y: 46.042,
+        z: 14813.5
+      },
+      heading: 0,
+      tilt: 72
+    }
+  });
+
+  view.watch("camera", function(camera) {
+    window.log("Heading:", Math.round(camera.heading));
+  });
+}
+
+function play() {
+  var camera = view.camera;
+
+  camera.heading += 5;
+
+  view.camera = camera;
+}
+</script>
+
+<script src="./support/snippet.js"></script>

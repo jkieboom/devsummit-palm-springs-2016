@@ -1,0 +1,34 @@
+<script>
+function snippet() {
+  view = new SceneView({
+    container: "viewDiv",
+
+    map: new Map({
+      basemap: "satellite"
+    }),
+
+    center: [0, 0],
+
+    environment: {
+      lighting: {
+        cameraTrackingEnabled: false
+      }
+    }
+  });
+
+  view.environment.lighting.cameraTrackingEnabled = false;
+
+  view.watch("camera", function(camera) {
+    window.log("Altitude", Math.round(camera.position.z / 1000) + " km");
+  });
+}
+
+function play() {
+  view.constraints.altitude = {
+    min: 10000000,
+    max: 100000000
+  };
+}
+</script>
+
+<script src="./support/snippet.js"></script>
