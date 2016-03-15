@@ -953,6 +953,22 @@ class LayerView {
 
 ---
 
+<!-- .slide: data-background="images/bg-6.png" -->
+
+## Sneak preview: highlighting in 3D
+
+<img src="./images/highlight-demo-1.png" style="height: 650px"/>
+
+---
+
+<!-- .slide: data-background="images/bg-6.png" -->
+
+## Sneak preview: highlighting in 3D
+
+<img src="./images/highlight-demo-2.png" style="height: 650px"/>
+
+---
+
 <!-- .slide: data-background="images/bg-4.png" -->
 
 ## Summary
