@@ -1,0 +1,39 @@
+html, body, #content, #app {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.esri-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sidebar {
+  margin-top: 64px;
+}
+
+.list-item {
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  position: relative;
+  margin-left: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+#lake-information {
+  padding: 16px;
+
+  h1 {
+    margin: 0 0 16px 0;
+  }
+}

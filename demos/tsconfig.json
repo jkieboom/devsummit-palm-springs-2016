@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "noEmit": false,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "noImplicitUseStrict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "jsx": "react",
+    "target": "es5"
+  },
+  "files": [
+    "components/App.tsx",
+    "components/View.tsx",
+
+    "apps/external-renderer/ui/Ui.tsx",
+
+    "typings/tsd.d.ts"
+  ]
+}

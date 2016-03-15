@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>4.0 External Renderer: Fishing Lakes</title>
+
+    <link rel="stylesheet" href="//jsdev.arcgis.com/4.0/esri/css/main.css">
+
+    <script src="./js/lib/three.js"></script>
+    <script src="//jsdev.arcgis.com/4.0/"></script>
+  </head>
+  <body>
+  	<div id="content">
+  	</div>
+
+    <script>
+      var app, view;
+      
+      require({
+        packages: [{
+          name: "build",
+          location: document.location.pathname + "/../../../build"
+        }, {
+          name: "app",
+          location: document.location.pathname + "/js"
+        }]
+      }, ["build/external-renderer"], function(externalRenderer) {
+        var ui = new externalRenderer.default();
+        ui.run();
+
+        app = ui.app;
+        view = app.view;
+      });
+    </script>
+  </body>
+</html>
