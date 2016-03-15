@@ -4,16 +4,11 @@ function snippet() {
     container: "viewDiv",
 
     map: new Map({
-      basemap: "satellite"
+      basemap: "satellite",
+      ground: "world-elevation"
     }),
 
-    center: [0, 0],
-
-    environment: {
-      lighting: {
-        cameraTrackingEnabled: false
-      }
-    }
+    center: [0, 0]
   });
 
   view.environment.lighting.cameraTrackingEnabled = false;
