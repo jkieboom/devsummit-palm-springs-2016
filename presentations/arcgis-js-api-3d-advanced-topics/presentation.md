@@ -15,11 +15,15 @@ Yann Cabon, ESRI Redlands
 
 ---
 
-<!-- .slide: data-background="images/bg-4.png" -->
+<!-- .slide: data-background="images/bg-5.png" -->
 ## IMPORTANT NOTICE:
 <br><br>
 **All demonstrations and embedded samples are written against<br>
 the upcoming 4.0 release and (most) will not work against 4.0beta3!!!**
+<br><br>
+- View online:
+  - Presentation: http://jkieboom.github.io/devsummit-palm-springs-2016/presentations/arcgis-js-api-3d-advanced-topics/#/
+  - External webgl rendering demo: https://jkieboom.github.io/devsummit-palm-springs-2016/demos/apps/external-renderer/
 
 ---
 
