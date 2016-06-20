@@ -32,29 +32,27 @@ define([
   SceneView
 ) {
   var ExternalRendererApp = Accessor.createSubclass({
-    classMetadata: {
-      properties: {
-        simulatedWaterEnabled: {
-          value: true
-        },
+    properties: {
+      simulatedWaterEnabled: {
+        value: true
+      },
 
-        waterVelocity: {
-          value: 0.2
-        },
+      waterVelocity: {
+        value: 0.2
+      },
 
-        waveSize: {
-          value: 0.2
-        },
+      waveSize: {
+        value: 0.2
+      },
 
-        ready: {
-          value: false
-        }
-      }
+      ready: {
+        value: false
+      },
+
+      readyCallback: {}
     },
 
-    constructor: function(readyCallback) {
-      this.readyCallback = readyCallback;
-
+    initialize: function() {
       esriConfig.geometryServiceUrl = "//utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer";
 
       this.view = new SceneView({

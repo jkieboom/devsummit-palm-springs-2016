@@ -10,7 +10,7 @@ declare class ExternalRendererApp extends App {
   waveSize: number;
   waterVelocity: number;
 
-  constructor(readyHandler: () => void);
+  constructor(params: { readyCallback: () => void; });
 }
 
 declare module "app/ExternalRendererApp" {

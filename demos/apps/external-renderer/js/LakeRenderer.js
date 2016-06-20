@@ -394,7 +394,7 @@ define([
       var geometry = new THREE.BufferGeometry();
 
       // Project to render coordinates
-      var position = externalRenderers.toRenderCoordinates(this.view, vertices, 0, new Array(vertices.length), 0, vertices.length / 3);
+      var position = externalRenderers.toRenderCoordinates(this.view, vertices, 0, null, new Array(vertices.length), 0, vertices.length / 3);
 
       // Choose local origin
       var origin = this._originate(position);

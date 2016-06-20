@@ -16,7 +16,7 @@ define([
       this.origin = [0, 0, 0];
       this.rotation = rotation;
 
-      this.origin = externalRenderers.toRenderCoordinates(view, p, 0, this.origin, 0, 1);
+      this.origin = externalRenderers.toRenderCoordinates(view, p, 0, null, this.origin, 0, 1);
 
       var video = document.createElement("video");
       video.style.display = "none";

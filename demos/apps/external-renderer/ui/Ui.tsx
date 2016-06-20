@@ -27,9 +27,11 @@ export default class Ui {
   }
 
   run() {
-    this.app = new ExternalRendererApp(() => {
-      this.ready = true;
-      this.render();
+    this.app = new ExternalRendererApp({
+      readyCallback: () => {
+        this.ready = true;
+        this.render();
+      }
     });
 
     this.render();
