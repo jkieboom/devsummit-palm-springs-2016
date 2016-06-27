@@ -8,6 +8,7 @@ define([
   "./data/pointsWithElevation",
 
   "esri/Map",
+  "esri/Graphic",
   "esri/config",
 
   "esri/core/Accessor",
@@ -25,7 +26,7 @@ define([
   require,
   LakeRenderer, ForestLayer, VideoRenderer, THREERenderer,
   pointsWithElevation,
-  Map, esriConfig,
+  Map, Graphic, esriConfig,
   Accessor, promiseUtils,
   Point, Polygon, SpatialReference,
   QueryTask, Query,
@@ -106,20 +107,23 @@ define([
         }
       }
 
-      var task = new QueryTask({
-        url: "https://vafwis.dgif.virginia.gov/arcgis/rest/services/Public/Lakes/FeatureServer/1"
-      });
+      // NOTE: unfortunately this service is no longer available
+      // var task = new QueryTask({
+      //   url: "https://vafwis.dgif.virginia.gov/arcgis/rest/services/Public/Lakes/FeatureServer/1"
+      // });
 
-      var query = new Query();
+      // var query = new Query();
 
-      query.returnGeometry = true;
-      query.outFields = ["*"];
-      query.where = "NAME='" + lake.name + "'";
-      query.outSpatialReference = this.view.spatialReference;
+      // query.returnGeometry = true;
+      // query.outFields = ["*"];
+      // query.where = "NAME='" + lake.name + "'";
+      // query.outSpatialReference = this.view.spatialReference;
 
       this.view.goTo(lake.cameras[0]);
 
-      var queryPromise = task.execute(query);
+      var queryPromise;
+
+      // queryPromise = task.execute(query);
 
       this.threeRenderer = new THREERenderer(this.view);
 
@@ -133,6 +137,17 @@ define([
 
       var lakeFeature;
       this.currentLake = {};
+
+      // NOTE: we fake the results from the query task with locally stored data
+      // because the service is no longer available
+      queryPromise = promiseUtils.resolve({
+        features: [
+          new Graphic({
+            geometry: new Polygon(pointsWithElevation, SpatialReference.WebMercator),
+            attributes: {}
+          })
+        ]
+      });
 
       queryPromise
         .then(function(results) {
