@@ -14,35 +14,33 @@ define([
   ObjectSymbol3DLayer
 ) {
   var ForestLayer = GraphicsLayer.createSubclass({
-    classMetadata: {
-      properties: {
-        plantContour: {
-          type: Polygon
-        },
+    properties: {
+      plantContour: {
+        type: Polygon
+      },
 
-        seed: {
-          value: 15
-        },
+      seed: {
+        value: 15
+      },
 
-        plantEvery: {
-          value: 10
-        },
+      plantEvery: {
+        value: 10
+      },
 
-        plantDistance: {
-          value: 50
-        },
+      plantDistance: {
+        value: 50
+      },
 
-        plantRadius: {
-          value: 40
-        },
+      plantRadius: {
+        value: 40
+      },
 
-        minimumDistance: {
-          value: 0.5
-        },
+      minimumDistance: {
+        value: 0.5
+      },
 
-        plantInsideOnly: {
-          type: Polygon
-        }
+      plantInsideOnly: {
+        type: Polygon
       }
     },
 
