@@ -78,7 +78,7 @@ define([
     update: function() {
       this._currentSeed = this.seed;
 
-      this.clear();
+      this.removeAll();
 
       var buffered = geometryEngine.densify(geometryEngine.buffer(this.plantContour, this.plantDistance), this.plantEvery);
 
