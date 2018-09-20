@@ -81,7 +81,7 @@ define([
 
       this._setupLakes();
 
-      this.view.then(function() {
+      this.view.when(function() {
         this.view._stage.setRenderParams({ idleSuspend: false });
         this._activateLake(this.lakes[0]);
       }.bind(this));
@@ -161,9 +161,9 @@ define([
           this.view.map.add(this.currentLake.forest);
 
           // Wait some time for the terrain to load in
-          return promiseUtils.after(3000);
+          return this._whenNotUpdatingFor(2000);
         }.bind(this))
-        
+
         .then(function() {
           this.currentLake.renderer = this._createLakeRenderer(lake, lakeFeature);
           this.threeRenderer.add(this.currentLake.renderer);
@@ -179,6 +179,24 @@ define([
             }.bind(this), 450);
           }.bind(this), 1000);
         }.bind(this));
+    },
+
+    _whenNotUpdatingFor: function(notUpdatingTime) {
+      return promiseUtils.create((resolve, reject) => {
+        let timeoutHandle = 0;
+
+        var watchHandle = this.view.watch("updating", function(updating) {
+          clearTimeout(timeoutHandle);
+          timeoutHandle = 0;
+
+          if (!updating) {
+            timeoutHandle = setTimeout(function() {
+              watchHandle.remove();
+              resolve();
+            }, notUpdatingTime);
+          }
+        });
+      });
     },
 
     _createLakeRenderer: function(lake, lakeFeature) {

@@ -1,21 +1,21 @@
 define([
   "esri/core/declare",
-  "esri/core/HandleRegistry",
+  "esri/core/libs/earcut/earcut",
+  "esri/core/Handles",
   "esri/geometry/geometryEngine",
   "esri/geometry/Extent",
   "esri/geometry/Point",
   "esri/views/3d/externalRenderers",
-  "esri/views/3d/layers/graphics/earcut/earcut",
   "dojo/text!./shaders/water.glvs",
   "dojo/text!./shaders/water.glfs",
   "dojo/text!./textures/noise.b64",
   "dojo/text!./textures/reflection.b64"
 ], function(
   declare,
-  HandleRegistry,
+  earcut,
+  Handles,
   geometryEngine, Extent, Point,
   externalRenderers,
-  earcut,
   waterGLVS, waterGLFS,
   noiseB64, reflectionB64
 ) {
@@ -37,7 +37,7 @@ define([
       this.geometry = this._makeGeometry(inner.vertices.concat(outer.vertices), outer.polygon.extent);
       this.geometry = this._makeGeometry(inner.vertices, inner.polygon.extent);
 
-      this.handles = new HandleRegistry();
+      this.handles = new Handles();
 
       this.color = [0.1, 0.3, 0.3];
       this.enabled = true;
@@ -53,9 +53,7 @@ define([
 
       // var mesh = new THREE.Mesh(this.geometry.geometry);
       // var wireframe = new THREE.WireframeHelper(mesh, 0xff0000);
-
-      // this.scene.add(cube);
-      //this.scene.add(wireframe);
+      // this.scene.add(wireframe);
     },
 
     _subdivide: function(polygon, factor, N) {
@@ -281,7 +279,9 @@ define([
           var i;
 
           for (i = 0; i < corners.length; i++) {
-            if (polygon.contains(corners[i])) {
+            var corner = corners[i];
+
+            if (polygon.contains(new Point(corner[0], corner[1], corner[2], polygon.spatialReference))) {
               hasInside = true;
             } else {
               hasOutside = true;
@@ -363,7 +363,7 @@ define([
         } else {
           tmpPoint.x = verts[idx];
           tmpPoint.y = verts[idx + 1];
-          
+
           var nearest = geometryEngine.nearestVertex(polygon, tmpPoint);
           z = innerZ[nearest.vertexIndex] - 0.2;
         }
