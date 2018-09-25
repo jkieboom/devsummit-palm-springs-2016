@@ -3,10 +3,12 @@ uniform vec3 eye;
 
 varying vec3 fPos;
 varying vec3 fEye;
+varying vec3 v_position;
 
 void main(void) {
   fPos = position;
   fEye = eye - origin;
+  v_position=position;
 
   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }

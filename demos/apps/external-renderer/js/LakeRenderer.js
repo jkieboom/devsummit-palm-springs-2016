@@ -39,7 +39,8 @@ define([
 
       this.handles = new Handles();
 
-      this.color = [0.1, 0.3, 0.3];
+      //this.color = [0.1, 0.3, 0.3];
+      this.color = [0.3, 0.95, 0.95, 1];
       this.enabled = true;
       this.velocity = 0.2;
       this.waveSize = 0.2;
@@ -163,6 +164,11 @@ define([
           enabled: {
             type: "f",
             value: 1
+          },
+
+          u_nMatrix: { 
+            type: "m4", 
+            value: new THREE.Matrix4() 
           }
         }
       });
@@ -214,6 +220,10 @@ define([
       this.camera.lookAt(new THREE.Vector3(c.center[0] - o[0], c.center[1] - o[1], c.center[2] - o[2]));
 
       this.waterMaterial.uniforms.eye.value.set(c.eye[0], c.eye[1], c.eye[2]);
+      this.waterMaterial.uniforms.u_nMatrix.value.set(this.camera.matrixWorldInverse.elements[0],this.camera.matrixWorldInverse.elements[1],this.camera.matrixWorldInverse.elements[2],this.camera.matrixWorldInverse.elements[3],
+                                                      this.camera.matrixWorldInverse.elements[4],this.camera.matrixWorldInverse.elements[5],this.camera.matrixWorldInverse.elements[6],this.camera.matrixWorldInverse.elements[7],
+                                                      this.camera.matrixWorldInverse.elements[8],this.camera.matrixWorldInverse.elements[9],this.camera.matrixWorldInverse.elements[10],this.camera.matrixWorldInverse.elements[11],
+                                                      this.camera.matrixWorldInverse.elements[12],this.camera.matrixWorldInverse.elements[13],this.camera.matrixWorldInverse.elements[14],this.camera.matrixWorldInverse.elements[15]);
     },
 
     _flattenRing: function(ring, elevationSampler) {
